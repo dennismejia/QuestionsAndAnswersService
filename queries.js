@@ -18,8 +18,10 @@ client.connect((err) => {
 
 
 
-const getQuestions = (id, cb) => {
-  client.query(`SELECT * FROM questions WHERE product_id = ${id}`, (err, results) => {
+const getQuestions = (id, count, page, cb) => {
+  page = page - 1;
+  let offset = page * count;
+  client.query(`SELECT * FROM questions WHERE product_id = ${id} LIMIT ${count} OFFSET ${offset}`, (err, results) => {
     if (err) {
       console.log('ERR GETTING QUESTIONS', err);
       cb(err, null)
@@ -29,8 +31,10 @@ const getQuestions = (id, cb) => {
   });
 };
 
-const getAnswers = (id, cb) => {
-  client.query(`SELECT * FROM answers WHERE questionId = ${id}`, (err, results) => {
+const getAnswers = (id, count, page, cb) => {
+  page = page - 1;
+  let offset = page * count;
+  client.query(`SELECT * FROM answers WHERE questionId = ${id} LIMIT ${count} OFFSET ${offset}`, (err, results) => {
     if (err) {
       console.log('ERR GETTING QUESTIONS', err);
       cb(err, null);

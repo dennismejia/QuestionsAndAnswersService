@@ -12,7 +12,7 @@ app.use(cors());
 //ROUTES
 
 app.get('/questions/:id', (req, res) => {
-  queries.getQuestions(req.params.id, (err, results) => {
+  queries.getQuestions(req.params.id, req.query.count, req.query.page, (err, results) => {
     if (err) {
       console.log('err', err);
       res.status(400).send(err);
@@ -23,7 +23,7 @@ app.get('/questions/:id', (req, res) => {
 });
 
 app.get('/answers/:id', (req, res) => {
-  queries.getAnswers(req.params.id, (err, results) => {
+  queries.getAnswers(req.params.id, req.query.count, req.query.page, (err, results) => {
     if (err) {
       console.log('err', err);
       res.status(400).send(err);
