@@ -77,16 +77,16 @@ app.put('/questions/:id/helpful', (req, res) => {
   });
 });
 
-app.put('/questions/:id/reported', (req, res) => {
-  queries.changeReportedQ(req.params.id, (err, results) => {
-    if (err) {
-      console.log('err', err);
-      res.status(400).send(err);
-    } else {
-      res.status(200).send(results);
-    }
-  });
-});
+// app.put('/questions/:id/reported', (req, res) => {
+//   queries.changeReportedQ(req.params.id, (err, results) => {
+//     if (err) {
+//       console.log('err', err);
+//       res.status(400).send(err);
+//     } else {
+//       res.status(200).send(results);
+//     }
+//   });
+// });
 
 app.put('/answers/:id/helpful', (req, res) => {
   queries.addHelpfulA(req.params.id, (err, results) => {
